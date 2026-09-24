@@ -1,0 +1,14 @@
+{
+  "name": "sample_mern_app",
+  "version": "1.0.0",
+  "description": "Sample MERN application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.10.1",
+    "mongodb": "^7.6.0"
+  }
+}
