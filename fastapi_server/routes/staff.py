@@ -1,8 +1,12 @@
 from fastapi import APIRouter
-stu_router=APIRouter(prefix="/staff")
-@stu_router.get("/getStaffs")
-def getStaffs():
-    return "get staff method called"
-@stu_router.post("/addstaff")
-def addstaff():
-    return "add staff method called"
+from models import staff
+
+staff_router = APIRouter(prefix="/staff", tags=["Staff"])
+
+@staff_router.get("/getStaffs")
+def get_staffs():
+    return {"message": "get staff method called"}
+
+@staff_router.post("/addstaff")
+def add_staff():
+    return {"message": "add staff method called"}
