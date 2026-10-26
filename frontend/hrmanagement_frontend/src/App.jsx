@@ -5,6 +5,8 @@ import Footer from './components/footer'
 import Home from '. /pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Adminlogin from './pages/Admin'
+import Adminhome from './pages/Adminhome'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/adminlogin" element={<Adminlogin />} />
+        <Route path="/adminhome" element={<Adminhome />} />
       </Routes>
 
       <Footer />
