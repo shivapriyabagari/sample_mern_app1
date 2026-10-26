@@ -2,12 +2,13 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/header'
 import Footer from './components/footer'
-import Home from '. /pages/Home'
+import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
-import Adminlogin from './pages/Admin'
+import Adminlogin from './pages/Adminlogin'
 import Adminhome from './pages/Adminhome'
 import { Routes, Route } from 'react-router-dom'
+import register from './pages/register'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/register" element={<register />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/adminlogin" element={<Adminlogin />} />
