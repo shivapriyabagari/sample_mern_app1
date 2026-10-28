@@ -8,4 +8,3 @@ class Staff(BaseModel):
     name:str
     email:str
     designation:str
-    

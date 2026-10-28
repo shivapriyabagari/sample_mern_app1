@@ -1,34 +1,47 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+﻿import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+function AdminLogin() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
 
-function Adminlogin(){
-    let [username, setUsername] = useState('')
-    let [password, setPassword] = useState('')
-    let[error, setError] = useState('')
+    const login = (event) => {
+        event.preventDefault();
 
-    let navigate = useNavigate()
-    let login=(event)=>{
-        event.preventDefault()
-        if(username === 'admin' && password === 'admin'){
-            alert('Login Successful')
-            navigate('/adminhome')
-        }else{ 
-            setError('Invalid Credentials')
+        if (username === "admin" && password === "admin") {
+            console.log("login success");
+            navigate("/adminhome");
+            return;
         }
-    }
-    return(
+
+        console.log("login failed");
+        setError("Invalid credentials");
+    };
+
+    return (
         <div>
-            <h1>Admin Login</h1>
             <form onSubmit={login}>
-                <input type="text" placeholder=" Enter Username" value={username} onChange={(e) => setUsername(e.target.value)} /><br></br>
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br></br>
+                <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter username"
+                />
+                <br />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter password"
+                />
+                <br />
                 <button type="submit">Admin Login</button>
             </form>
-            {error &&<div className="alert alert-danger" >
-                {error}
-            </div>}
+            {error && <div className="alert alert-danger">{error}</div>}
         </div>
-    )
+    );
 }
-export default Adminlogin;
+
+export default AdminLogin;

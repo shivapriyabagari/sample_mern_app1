@@ -1,55 +1,31 @@
-const express = require("express");
-const router = express.Router();
+let express=require('express');
+let router=express.Router();
+let {users} =require('../models/users');
 
-router.get("/viewemployees", (req, res) => {
-    return res.status(200).json({
-        message: "View Employees",
-        data: []
-    });
+let {tasks}=require('../models/tasks');
+
+router.get("/viewemployees",async (req,res)=>{
+    let result=await  users.find();
+    res.send(result);
 });
 
-router.post("/assignemployees", (req, res) => {
-    try {
-        const { employeeId, taskId } = req.body;
+router.post("/assign-task",async (req,res)=>{
+    let data=req.body;
+    let newTask=new tasks(data);
+    let result=await newTask.save();
+    res.send(result);     
+})
 
-        if (!employeeId || !taskId) {
-            return res.status(400).json({
-                message: "employeeId and taskId are required"
-            });
-        }
 
-        return res.status(201).json({
-            message: "Employee assigned successfully",
-            data: { employeeId, taskId }
-        });
-    } catch (error) {
-        return res.status(500).json({
-            message: "Error while assigning employee",
-            error: error.message
-        });
+
+
+router.delete("/deleteemployee/:id",async (req,res)=>{
+    let result=await users.findByIdAndDelete(req.params.id)
+    if(result){
+        res.send("employee deleted success");
+    }else{
+        res.send("no user found");
     }
-});
+})
 
-router.delete("/deleteemployees", (req, res) => {
-    try {
-        const { employeeId } = req.body;
-
-        if (!employeeId) {
-            return res.status(400).json({
-                message: "employeeId is required"
-            });
-        }
-
-        return res.status(200).json({
-            message: "Employee deleted successfully",
-            data: { employeeId }
-        });
-    } catch (error) {
-        return res.status(500).json({
-            message: "Error while deleting employee",
-            error: error.message
-        });
-    }
-});
-
-module.exports = router;
+module.exports=router;
